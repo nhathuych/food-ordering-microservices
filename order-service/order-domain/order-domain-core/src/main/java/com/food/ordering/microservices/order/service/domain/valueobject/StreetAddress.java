@@ -1,6 +1,7 @@
 package com.food.ordering.microservices.order.service.domain.valueobject;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class StreetAddress {
     private final UUID id;
