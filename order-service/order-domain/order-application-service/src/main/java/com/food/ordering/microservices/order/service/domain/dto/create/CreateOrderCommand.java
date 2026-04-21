@@ -1,6 +1,5 @@
 package com.food.ordering.microservices.order.service.domain.dto.create;
 
-import com.food.ordering.microservices.order.service.domain.entity.OrderItem;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
