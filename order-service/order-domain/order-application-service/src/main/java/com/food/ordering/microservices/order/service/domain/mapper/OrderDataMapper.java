@@ -7,6 +7,7 @@ import com.food.ordering.microservices.domain.valueobject.RestaurantId;
 import com.food.ordering.microservices.order.service.domain.dto.create.CreateOrderCommand;
 import com.food.ordering.microservices.order.service.domain.dto.create.CreateOrderResponse;
 import com.food.ordering.microservices.order.service.domain.dto.create.OrderAddress;
+import com.food.ordering.microservices.order.service.domain.dto.track.TrackOrderResponse;
 import com.food.ordering.microservices.order.service.domain.entity.Order;
 import com.food.ordering.microservices.order.service.domain.entity.OrderItem;
 import com.food.ordering.microservices.order.service.domain.entity.Product;
@@ -47,6 +48,14 @@ public class OrderDataMapper {
         return CreateOrderResponse.builder()
                 .orderTrackingId(order.getTrackingId().getValue())
                 .orderStatus(order.getOrderStatus())
+                .build();
+    }
+
+    public TrackOrderResponse orderToTrackOrderResponse(Order order) {
+        return TrackOrderResponse.builder()
+                .orderTrackingId(order.getTrackingId().getValue())
+                .orderStatus(order.getOrderStatus())
+                .failureMessages(order.getFailureMessages())
                 .build();
     }
 
