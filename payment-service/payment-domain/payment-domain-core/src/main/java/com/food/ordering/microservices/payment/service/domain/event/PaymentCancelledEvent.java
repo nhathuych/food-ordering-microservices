@@ -1,12 +1,21 @@
 package com.food.ordering.microservices.payment.service.domain.event;
 
+import com.food.ordering.microservices.domain.event.publisher.DomainEventPublisher;
 import com.food.ordering.microservices.payment.service.domain.entity.Payment;
 
 import java.time.ZonedDateTime;
 import java.util.Collections;
 
 public class PaymentCancelledEvent extends PaymentEvent {
-    public PaymentCancelledEvent(Payment payment, ZonedDateTime createdAt) {
+    private final DomainEventPublisher<PaymentCancelledEvent> paymentCancelledEventDomainEventPublisher;
+
+    public PaymentCancelledEvent(Payment payment, ZonedDateTime createdAt, DomainEventPublisher<PaymentCancelledEvent> paymentCancelledEventDomainEventPublisher) {
         super(payment, createdAt, Collections.emptyList());
+        this.paymentCancelledEventDomainEventPublisher = paymentCancelledEventDomainEventPublisher;
+    }
+
+    @Override
+    public void fire() {
+        paymentCancelledEventDomainEventPublisher.publish(this);
     }
 }
