@@ -1,6 +1,7 @@
 package com.food.ordering.microservices.order.service.messaging.publisher.kafka;
 
 import com.food.ordering.microservices.kafka.order.avro.model.RestaurantApprovalRequestAvroModel;
+import com.food.ordering.microservices.kafka.producer.KafkaMessageHelper;
 import com.food.ordering.microservices.kafka.producer.service.KafkaProducer;
 import com.food.ordering.microservices.order.service.domain.config.OrderServiceConfigData;
 import com.food.ordering.microservices.order.service.domain.event.OrderPaidEvent;
@@ -15,7 +16,7 @@ public class PayOrderKafkaMessagePublisher implements OrderPaidRestaurantRequest
     private final OrderMessagingDataMapper orderMessagingDataMapper;
     private final OrderServiceConfigData orderServiceConfigData;
     private final KafkaProducer<String, RestaurantApprovalRequestAvroModel> kafkaProducer;
-    private final OrderKafkaMessageHelper orderKafkaMessageHelper;
+    private final KafkaMessageHelper orderKafkaMessageHelper;
 
     public PayOrderKafkaMessagePublisher(OrderMessagingDataMapper orderMessagingDataMapper, OrderServiceConfigData orderServiceConfigData, KafkaProducer<String, RestaurantApprovalRequestAvroModel> kafkaProducer, OrderKafkaMessageHelper orderKafkaMessageHelper) {
         this.orderMessagingDataMapper = orderMessagingDataMapper;
