@@ -1,4 +1,4 @@
-package com.food.ordering.microservices.order.service.dataaccess.restaurant.entity;
+package com.food.ordering.microservices.dataaccess.restaurant.entity;
 
 import lombok.*;
 
@@ -23,17 +23,18 @@ public class RestaurantEntity {
     private UUID restaurantId;
     @Id
     private UUID productId;
-
     private String restaurantName;
     private Boolean restaurantActive;
     private String productName;
     private BigDecimal productPrice;
+    private Boolean productAvailable;
 
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RestaurantEntity that = (RestaurantEntity) o;
-        return Objects.equals(restaurantId, that.restaurantId) && Objects.equals(productId, that.productId);
+        return restaurantId.equals(that.restaurantId) && productId.equals(that.productId);
     }
 
     @Override

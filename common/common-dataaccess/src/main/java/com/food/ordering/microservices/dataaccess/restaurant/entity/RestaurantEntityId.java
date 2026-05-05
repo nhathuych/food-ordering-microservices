@@ -1,4 +1,4 @@
-package com.food.ordering.microservices.order.service.dataaccess.restaurant.entity;
+package com.food.ordering.microservices.dataaccess.restaurant.entity;
 
 import lombok.*;
 
@@ -17,9 +17,10 @@ public class RestaurantEntityId implements Serializable {
 
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RestaurantEntityId that = (RestaurantEntityId) o;
-        return Objects.equals(restaurantId, that.restaurantId) && Objects.equals(productId, that.productId);
+        return restaurantId.equals(that.restaurantId) && productId.equals(that.productId);
     }
 
     @Override
