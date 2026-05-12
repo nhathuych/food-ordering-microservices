@@ -7,7 +7,6 @@ import com.food.ordering.microservices.order.service.domain.entity.Restaurant;
 import com.food.ordering.microservices.order.service.domain.event.OrderCreatedEvent;
 import com.food.ordering.microservices.order.service.domain.exception.OrderDomainException;
 import com.food.ordering.microservices.order.service.domain.mapper.OrderDataMapper;
-import com.food.ordering.microservices.order.service.domain.ports.output.message.publisher.payment.OrderCreatedPaymentRequestMessagePublisher;
 import com.food.ordering.microservices.order.service.domain.ports.output.repository.CustomerRepository;
 import com.food.ordering.microservices.order.service.domain.ports.output.repository.OrderRepository;
 import com.food.ordering.microservices.order.service.domain.ports.output.repository.RestaurantRepository;

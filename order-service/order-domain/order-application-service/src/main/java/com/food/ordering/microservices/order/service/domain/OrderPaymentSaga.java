@@ -4,7 +4,6 @@ import com.food.ordering.microservices.domain.event.EmptyEvent;
 import com.food.ordering.microservices.order.service.domain.dto.message.PaymentResponse;
 import com.food.ordering.microservices.order.service.domain.entity.Order;
 import com.food.ordering.microservices.order.service.domain.event.OrderPaidEvent;
-import com.food.ordering.microservices.order.service.domain.ports.output.message.publisher.restaurantapproval.OrderPaidRestaurantRequestMessagePublisher;
 import com.food.ordering.microservices.saga.SagaStep;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
