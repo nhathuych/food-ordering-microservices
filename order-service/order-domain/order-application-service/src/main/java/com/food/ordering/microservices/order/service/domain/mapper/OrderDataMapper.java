@@ -1,9 +1,6 @@
 package com.food.ordering.microservices.order.service.domain.mapper;
 
-import com.food.ordering.microservices.domain.valueobject.CustomerId;
-import com.food.ordering.microservices.domain.valueobject.Money;
-import com.food.ordering.microservices.domain.valueobject.ProductId;
-import com.food.ordering.microservices.domain.valueobject.RestaurantId;
+import com.food.ordering.microservices.domain.valueobject.*;
 import com.food.ordering.microservices.order.service.domain.dto.create.CreateOrderCommand;
 import com.food.ordering.microservices.order.service.domain.dto.create.CreateOrderResponse;
 import com.food.ordering.microservices.order.service.domain.dto.create.OrderAddress;
@@ -12,6 +9,8 @@ import com.food.ordering.microservices.order.service.domain.entity.Order;
 import com.food.ordering.microservices.order.service.domain.entity.OrderItem;
 import com.food.ordering.microservices.order.service.domain.entity.Product;
 import com.food.ordering.microservices.order.service.domain.entity.Restaurant;
+import com.food.ordering.microservices.order.service.domain.event.OrderCreatedEvent;
+import com.food.ordering.microservices.order.service.domain.outbox.model.payment.OrderPaymentEventPayload;
 import com.food.ordering.microservices.order.service.domain.valueobject.StreetAddress;
 import org.springframework.stereotype.Component;
 
@@ -57,6 +56,16 @@ public class OrderDataMapper {
                 .orderTrackingId(order.getTrackingId().getValue())
                 .orderStatus(order.getOrderStatus())
                 .failureMessages(order.getFailureMessages())
+                .build();
+    }
+
+    public OrderPaymentEventPayload orderCreatedEventToOrderPaymentEventPayload(OrderCreatedEvent orderCreatedEvent) {
+        return OrderPaymentEventPayload.builder()
+                .customerId(orderCreatedEvent.getOrder().getCustomerId().getValue().toString())
+                .orderId(orderCreatedEvent.getOrder().getId().getValue().toString())
+                .price(orderCreatedEvent.getOrder().getPrice().getAmount())
+                .createdAt(orderCreatedEvent.getCreatedAt())
+                .paymentOrderStatus(PaymentOrderStatus.PENDING.name())
                 .build();
     }
 
